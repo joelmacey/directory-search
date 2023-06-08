@@ -25,7 +25,7 @@ def _count_occurrences(file_paths: List) -> Dict:
 
 def _filter_occurrences(string_count_dict: Dict) -> Dict:
     logging.debug(
-        "Filtering string_count_dict to only include items with a count of greater than or equal to 2"
+        "Filtering string_count_dict to only items with a count of greater than or equal to 2"
     )
     filtered_string_count_dict = {}
     # TO DO: Dict Comprehension
@@ -35,13 +35,33 @@ def _filter_occurrences(string_count_dict: Dict) -> Dict:
     return filtered_string_count_dict
 
 
-def main(directory: str):
-    logging.debug("Starting Directory Search")
+def _sort_by_occurance(filtered_string_count_dict: Dict) -> Dict:
+    logging.debug("Sorting filtered string count in descending order")
+    sorted_string_count = sorted(
+        filtered_string_count_dict.items(),
+        key=lambda string_count: string_count[1],
+        reverse=True,
+    )
+    sorted_string_count = dict(
+        (string, count) for string, count in sorted_string_count
+    )  # Converting back to a dict
+    return sorted_string_count
+
+
+def _display_results(sorted_string_count: Dict) -> None:
+    logging.debug("Print results in line delimeted format")
+    for string, count in sorted_string_count.items():
+        print(string, count)
+
+
+def main(directory: str) -> None:
+    logging.info("Starting Directory Search")
     file_paths = _crawl_directory(directory)
     string_count_dict = _count_occurrences(file_paths)
     filtered_string_count_dict = _filter_occurrences(string_count_dict)
-    print(filtered_string_count_dict)
-    logging.debug("Directory Search Finished")
+    sorted_string_count = _sort_by_occurance(filtered_string_count_dict)
+    _display_results(sorted_string_count)
+    logging.info("Directory Search Finished")
 
 
 if __name__ == "__main__":

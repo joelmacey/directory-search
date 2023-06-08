@@ -1,3 +1,4 @@
+[![Python 3.8.7](https://img.shields.io/badge/python-3.8.7-green.svg)](https://www.python.org/downloads/release/python-387/)
 # Directory Search
 
 This script searches a directory and its subdirectories and creates a list of the files and a count of all the occurences greater than or equal to 2.
@@ -9,7 +10,6 @@ This script searches a directory and its subdirectories and creates a list of th
 4. Sort in descending order
 5. Display result in below format:
 ```
-filename filecount
 __init__.py 404
 main.py 101
 README.md 25

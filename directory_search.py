@@ -1,8 +1,22 @@
+import os
 import argparse
+import logging
+
+logging.basicConfig(filename=f"{__file__}.log", filemode="w", level=logging.DEBUG)
+
+
+def _crawl_directory(directory):
+    logging.debug("Crawling Directory %s", directory)
+    file_paths = []
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            file_paths.append(file)
+    return file_paths
 
 
 def main(directory):
-    print(directory)
+    file_paths = _crawl_directory(directory)
+    print(file_paths)
 
 
 if __name__ == "__main__":

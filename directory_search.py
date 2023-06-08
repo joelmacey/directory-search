@@ -23,11 +23,24 @@ def _count_occurrences(file_paths: List) -> Dict:
     return string_count_dict
 
 
+def _filter_occurrences(string_count_dict: Dict) -> Dict:
+    logging.debug(
+        "Filtering string_count_dict to only include items with a count of greater than or equal to 2"
+    )
+    filtered_string_count_dict = {}
+    # TO DO: Dict Comprehension
+    for string, count in string_count_dict.items():
+        if count >= 2:
+            filtered_string_count_dict[string] = count
+    return filtered_string_count_dict
+
+
 def main(directory: str):
     logging.debug("Starting Directory Search")
     file_paths = _crawl_directory(directory)
     string_count_dict = _count_occurrences(file_paths)
-    print(string_count_dict)
+    filtered_string_count_dict = _filter_occurrences(string_count_dict)
+    print(filtered_string_count_dict)
     logging.debug("Directory Search Finished")
 
 

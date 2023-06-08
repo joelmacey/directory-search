@@ -17,5 +17,7 @@ README.md 25
 
 ## Running the script
 To run the script, execute the script with `directory` argument.
+
 `python directory_search.py --directory ~/mydirectory/`
+
 *The script will default to the current directory if no directory is specified.*
